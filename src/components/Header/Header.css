@@ -1,0 +1,16 @@
+.header-container {
+    background-color: #f5ba13;
+    display: flex;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    margin-bottom: 1.3rem;
+}
+
+.header-container .heading {
+    justify-content: flex-start;
+}
+
+.heading {
+    padding: 0 2rem;
+    color: #fff;
+    font-weight: 200;
+}
