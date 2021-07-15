@@ -7,7 +7,7 @@ export default class Header extends Component {
         return(
             <div className='header-container'>
                 <div className='heading'>
-                    <h1><BeenhereIcon className='AppIcon'/>Keep</h1>
+                    <h1><BeenhereIcon className='AppIcon'/>Notex</h1>
                 </div>
             </div>
         );
