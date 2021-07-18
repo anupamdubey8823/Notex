@@ -11,7 +11,8 @@
     padding: 1.5% 4.5%;
     text-align: left;
     width: 240px;
-    height: 110px;
+    height: auto;
+    overflow-wrap: break-word;
 }
 
 .card h1 {
