@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Note.css';
 import DeleteIcon from '@material-ui/icons/Delete';
 
