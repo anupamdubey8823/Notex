@@ -36,4 +36,10 @@ form button {
     left: 92%;
     bottom: -28px;
 }
+
+@media (max-width: 600px) {
+    form {
+        width: 55%;
+    }
+}
   
