@@ -40,7 +40,9 @@ function App() {
                     )
                 })}
             </div> {/* content div clousure */}
-            <Footer />
+            <div className="footer-container">
+                <Footer />
+            </div>
         </div>
     );
 }

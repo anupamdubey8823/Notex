@@ -7,5 +7,5 @@ export default function Footer() {
         <footer>
             <p>Copyright © {year}</p>
         </footer>
-    );
+);
 }
