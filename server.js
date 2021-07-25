@@ -19,7 +19,7 @@ connection.once('open', () => {
     console.log('MongoDB connection established');
 })
 // Require the noteSchema
-const noteRouter = require('./routes/Notes');
+const noteRouter = require('./backend/routes/Notes');
 
 app.use('/', noteRouter);
 
