@@ -26,4 +26,4 @@ yarn-error.log*
 .netlify
 
 #MongoDB URI
-/backend/.env
+/backend
