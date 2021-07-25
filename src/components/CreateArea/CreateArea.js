@@ -3,22 +3,26 @@ import "./CreateArea.css";
 import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 import Zoom from "@material-ui/core/Zoom";
+import axios from "axios";
 
 function CreateArea(props) {
   const [isExpanded, setExpanded] = useState(false);
 
   const [note, setNote] = useState({
-    title: "",
-    content: "",
+    Title: "",
+    Content: "",
   });
 
   function submitNote(event) {
+    event.preventDefault();
     props.onAdd(note);
     setNote({
-      title: "",
-      content: "",
+      Title: "",
+      Content: "",
     });
-    event.preventDefault();
+    axios
+      .post("http://localhost:5000/add", note)
+      .then((res) => console.log(res.data))
   }
 
   function handleChange(event) {
@@ -41,9 +45,9 @@ function CreateArea(props) {
         {isExpanded ? (
           <input
             onChange={handleChange}
-            name="title"
+            name="Title"
             placeholder="Title"
-            value={note.title}
+            value={note.Title}
             autoComplete="new-password"
           />
         ) : null}
@@ -51,14 +55,14 @@ function CreateArea(props) {
         <textarea
           onClick={expand}
           onChange={handleChange}
-          name="content"
+          name="Content"
           placeholder="Write a note..."
-          value={note.content}
+          value={note.Content}
           rows={isExpanded ? 3 : 1}
         />
         <Zoom in={isExpanded ? true : false}>
           <Fab onClick={submitNote}>
-            <AddIcon />
+              <AddIcon />
           </Fab>
         </Zoom>
       </form>
