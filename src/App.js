@@ -12,8 +12,8 @@ function App() {
 
   // Fetch all notes from MongoDB
   useEffect( () => {
-    async function fetchMyNotes() {
-        const response = await axios.get("http://localhost:5000/");
+    function fetchMyNotes() {
+        const response = axios.get("http://localhost:5000/");
         setNotes(response.data);
     }
     fetchMyNotes()
