@@ -2,25 +2,22 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import axios from "axios";
 
-import Header from "./components/Header/Header.js";
+import Header from "./components/Header/Header";
 import CreateArea from "./components/CreateArea/CreateArea";
-import Note from "./components/Note/Note.js";
-import Footer from "./components/Footer/Footer.js";
+import Note from "./components/Note/Note";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const [notes, setNotes] = useState([]);
 
   // Fetch all notes from MongoDB
-  useEffect( () => {
-    function fetchMyNotes() {
-        const response = axios.get("http://localhost:5000/");
-        setNotes(response.data);
-    }
-    fetchMyNotes()
+  useEffect(async () => {
+    const response = await axios.get("http://localhost:5000/");
+    setNotes(response.data);
   }, []);
 
   function addNote(note) {
-      setNotes((prevNotes) => {
+      setNotes(prevNotes => {
         return [...prevNotes, note];
       });
   }
@@ -38,7 +35,7 @@ function App() {
 
   // Render all notes from the DB
   function NotesList() {
-    return notes.map(currentNote => {
+    return notes.map((currentNote, index) => {
       return (
         <Note
           key={currentNote._id}
@@ -56,7 +53,9 @@ function App() {
       <div>
         <Header />
         <CreateArea onAdd={addNote} />
-        <div className="content">{NotesList()}</div>
+        <div className="content">
+          {NotesList()}
+        </div>
         {<Footer />}
       </div>
     </Router>

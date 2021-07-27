@@ -15,7 +15,7 @@ const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
 
 const connection = mongoose.connection;
-connection.once('open', () => {
+connection.once('open',  () => {
     console.log('MongoDB connection established');
 })
 // Require the noteSchema
