@@ -21,7 +21,7 @@ function CreateArea(props) {
       Content: "",
     });
     axios
-      .post("http://localhost:5000/add", note)
+      .post("https://notex-backend.herokuapp.com/add", note)
       .then((res) => console.log(res.data))
   }
 
