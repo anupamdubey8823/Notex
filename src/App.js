@@ -11,9 +11,12 @@ function App() {
   const [notes, setNotes] = useState([]);
 
   // Fetch all notes from MongoDB
-  useEffect(async () => {
-    const response = await axios.get("https://notex-backend.herokuapp.com/");
-    setNotes(response.data);
+  useEffect(() => {
+    async function fetchNotes() {
+      const response = await axios.get("https://notex-backend.herokuapp.com/");
+      setNotes(response.data);
+    }
+    fetchNotes();
   }, []);
 
   function addNote(note) {
