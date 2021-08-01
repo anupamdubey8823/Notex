@@ -1,4 +1,4 @@
-# Notex - Note taking app
+# Notex - A Note taking app
 
 ## Available Scripts
 
