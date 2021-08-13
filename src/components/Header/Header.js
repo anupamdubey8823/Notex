@@ -20,8 +20,8 @@ export default function Header() {
     }
 
     const handleLogin = () => {
-        setAuth(true);
         // Connect to Google Authentication
+        setAuth(true);
     }
 
     return (

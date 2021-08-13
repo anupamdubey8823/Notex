@@ -26,7 +26,6 @@ function App() {
   }
   // Delete the note
   function removeNote(id) {
-    // console.log("Deleted");
     axios
       .delete("https://notex-backend.herokuapp.com/delete/" + id)
       .then((res) => console.log(res.data));
@@ -35,6 +34,11 @@ function App() {
       return prevNotes.filter(noteItem => noteItem._id !== id)
     });
   }
+  // Edit notes
+  // const notesEditable = (id) => {
+  //   axios
+  //     .
+  // }
 
   // Render all notes from the DB
   function NotesList() {
@@ -46,6 +50,7 @@ function App() {
           onDelete={removeNote}
           Title={currentNote.Title}
           Content={currentNote.Content}
+          // onEdit={notesEditable}
         />
       );
     });
