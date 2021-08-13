@@ -4,6 +4,8 @@ import BeenhereIcon from "@material-ui/icons/Beenhere";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { Button, MenuItem, Menu } from "@material-ui/core";
+import { auth, provider } from '../firebase';
+import firebase from "firebase";
 
 export default function Header() {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -21,7 +23,14 @@ export default function Header() {
 
     const handleLogin = () => {
         // Connect to Google Authentication
-        setAuth(true);
+        firebase.auth()
+          .signInWithPopup(provider)
+          .then((response) => {
+            console.log(response)
+            setAuth(true);
+          })
+          .catch(err => alert(err))
+        // setAuth(true);
     }
 
     return (
