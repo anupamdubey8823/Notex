@@ -30,7 +30,6 @@ export default function Header() {
             setAuth(true);
           })
           .catch(err => alert(err))
-        // setAuth(true);
     }
 
     return (
