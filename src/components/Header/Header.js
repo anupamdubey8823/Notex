@@ -4,13 +4,24 @@ import BeenhereIcon from "@material-ui/icons/Beenhere";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { Button, MenuItem, Menu } from "@material-ui/core";
-import { auth, provider } from '../firebase';
+// import { provider } from '../firebase.js';
 import firebase from "firebase";
 
 export default function Header() {
     const [anchorEl, setAnchorEl] = useState(null);
     const [auth, setAuth] = useState(false);
     const open = Boolean(anchorEl);
+
+    const handleLogin = async () => {
+      // Connect to Google Authentication
+      const { provider } =  await import('../firebase.js')
+      firebase.auth().signInWithPopup(provider)
+        .then((response) => {
+          console.log(response)
+          setAuth(true);
+        })
+        .catch(err => alert(err))
+    }
 
     function handleClose() {
         setAnchorEl(null);
@@ -19,17 +30,6 @@ export default function Header() {
 
     const handleLogoutMenu = (event) => {
         setAnchorEl(event.currentTarget);
-    }
-
-    const handleLogin = () => {
-        // Connect to Google Authentication
-        firebase.auth()
-          .signInWithPopup(provider)
-          .then((response) => {
-            console.log(response)
-            setAuth(true);
-          })
-          .catch(err => alert(err))
     }
 
     return (

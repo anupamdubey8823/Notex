@@ -35,10 +35,9 @@ function App() {
     });
   }
   // Edit notes
-  // const notesEditable = (id) => {
-  //   axios
-  //     .
-  // }
+  const editNote = (id) => {
+    
+  }
 
   // Render all notes from the DB
   function NotesList() {

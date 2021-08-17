@@ -1,6 +1,12 @@
 const router = require('express').Router();
 let Note = require('../models/note.model');
 
+// Get all notes
+router.route('/').get(async (req, res) => {
+    const notes = await Note.find({});
+    res.send(notes);
+});
+
 // Create a Note
 router.route('/add').post((req, res) => {
     const Title = req.body.Title;
@@ -13,12 +19,6 @@ router.route('/add').post((req, res) => {
         .catch(err => res.status(400).json('Error: '+err))
 });
 
-// Get all notes
-router.route('/').get(async (req, res) => {
-    const notes = await Note.find({});
-    res.send(notes);
-});
-
 // Delete a Note
 router.route('/delete/:id').delete((req, res) => {
     Note.findByIdAndDelete(req.params.id)
@@ -27,7 +27,7 @@ router.route('/delete/:id').delete((req, res) => {
 });
 
 // Update a Note
-router.route('/update/:id').post((req, res) => {
+router.route('/update/:id').patch((req, res) => {
     Note.findById(req.params.id)
         .then(note => {
             note.Title = req.body.Title;
