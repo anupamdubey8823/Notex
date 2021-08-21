@@ -27,7 +27,7 @@ router.route('/delete/:id').delete((req, res) => {
 });
 
 // Update a Note
-router.route('/update/:id').patch((req, res) => {
+router.route('/update/:id').post((req, res) => {
     Note.findById(req.params.id)
         .then(note => {
             note.Title = req.body.Title;

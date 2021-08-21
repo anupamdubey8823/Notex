@@ -36,7 +36,11 @@ function App() {
   }
   // Edit notes
   const editNote = (id) => {
-    
+    // axios
+    //     .post("https://notex-backend.herokuapp.com/update/" + id)
+    //     .then((res) => console.log("Note updated!")
+
+      
   }
 
   // Render all notes from the DB
@@ -49,7 +53,7 @@ function App() {
           onDelete={removeNote}
           Title={currentNote.Title}
           Content={currentNote.Content}
-          // onEdit={notesEditable}
+          onEdit={editNote}
         />
       );
     });
