@@ -3,16 +3,19 @@ import './Note.css';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
-function Note(props) {
+const Note = props => {
     
+    /* EVENT HANDLERS */
+
     // Here, another id is passed to the Note component because 'key' cannot be passed in a component.
-    function handleDelete() {
+    const handleDelete = () => {
         props.onDelete(props.id);
     }
     const handleEdit = () => {
         props.onEdit(props.id);
     }
 
+    /* COMPONENT */
     return (
         <div className='note'>
             <div className='card'>

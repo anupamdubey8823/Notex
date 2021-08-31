@@ -1,33 +1,25 @@
 import React, { useState } from "react";
 import "./CreateArea.css";
 import AddIcon from "@material-ui/icons/Add";
-import Fab from "@material-ui/core/Fab";
-import Zoom from "@material-ui/core/Zoom";
+import { Fab, Zoom } from "@material-ui/core";
 import axios from "axios";
 
-function CreateArea(props) {
-  const [isExpanded, setExpanded] = useState(false);
+const CreateArea = props => {
+  
+  /* STATES */
+  
+  const [isExpanded, setExpanded] = useState(false); // Toggle the size of the Create Area if it is clicked on
 
-  const [note, setNote] = useState({
+  const [createArea, setCreateArea] = useState({
     Title: "",
     Content: "",
-  });
+  }); // Handling changes in the Create Area
 
-  function submitNote(event) {
-    event.preventDefault();
-    props.onAdd(note);
-    setNote({
-      Title: "",
-      Content: "",
-    });
-    axios
-      .post("https://notex-backend.herokuapp.com/add", note)
-      .then((res) => console.log(res.data))
-  }
+  /* EVENT HANDLERS */
 
-  function handleChange(event) {
+  const handleChange = event => {
     const { name, value } = event.target;
-    setNote((prevNote) => {
+    setCreateArea((prevNote) => {
       return {
         ...prevNote,
         [name]: value,
@@ -35,20 +27,32 @@ function CreateArea(props) {
     });
   }
 
-  function expand() {
-    setExpanded(true);
+  const submitNote = event => {
+    event.preventDefault();
+    
+    props.onAdd(createArea);
+    setCreateArea({
+      Title: "",
+      Content: "",
+    });
+    
+    axios
+      .post("https://notex-backend.herokuapp.com/add", createArea)
+      .then((res) => console.log(res.data));
   }
 
+  const expand = () => setExpanded(true);
+
+  /* COMPONENT */
   return (
     <div className="createnote">
-      <form>
+      <form id="createarea-form">
         {isExpanded ? (
           <input
             onChange={handleChange}
             name="Title"
             placeholder="Title"
-            value={note.Title}
-            autoComplete="new-password"
+            value={createArea.Title}
           />
         ) : null}
 
@@ -57,12 +61,12 @@ function CreateArea(props) {
           onChange={handleChange}
           name="Content"
           placeholder="Write a note..."
-          value={note.Content}
+          value={createArea.Content}
           rows={isExpanded ? 3 : 1}
         />
         <Zoom in={isExpanded ? true : false}>
           <Fab onClick={submitNote}>
-              <AddIcon />
+            <AddIcon />
           </Fab>
         </Zoom>
       </form>

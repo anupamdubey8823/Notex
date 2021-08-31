@@ -1,4 +1,4 @@
-form {
+#createarea-form {
     /* position: relative; */
     width: 40%;
     margin: 30px auto 20px auto;
@@ -8,8 +8,8 @@ form {
     box-shadow: 0 1px 5px rgb(138, 137, 137);
 }
 
-form input,
-form textarea {
+#createarea-form input,
+#createarea-form textarea {
   width: 100%;
   border: none;
   padding: 4px;
@@ -31,7 +31,7 @@ form textarea {
     outline: none;
 }
 
-form button {
+#createarea-form button {
     position: relative;
     left: 92%;
     bottom: -28px;
