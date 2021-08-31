@@ -31,6 +31,10 @@ const EditArea = props =>  {
         axios 
             .post("https://notex-backend.herokuapp.com/update/" + props.id, edit)
             .then(res => console.log(res.data))
+       
+        setTimeout( () => {
+            window.location.reload()
+        }, 320);
     }
 
     /* COMPONENT */
