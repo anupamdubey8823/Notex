@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-import Header from "./components/Header/Header";
+import Header from "./components/Header";
 import CreateArea from "./components/CreateArea/CreateArea";
-import Note from "./components/Note/Note";
-import Footer from "./components/Footer/Footer";
+import Note from "./components/Note";
+import Footer from "./components/Footer";
 import EditArea from "./components/EditArea";
 
 const App = () => {
@@ -25,23 +25,23 @@ const App = () => {
   // Fetch all notes from MongoDB
   useEffect( () => {
     async function fetchNotes() {
-      const response = await axios.get("https://notex-backend.herokuapp.com/");
+      const response = await axios.get("http://localhost:5000");
       setNotes(response.data);
     }
     fetchNotes();
   }, []);
 
   // Display new note after creation
-  const addNote = note => {
+  const addNote = (note) => {
       setNotes(prevNotes => {
         return [...prevNotes, note];
       });
   }
 
   // Delete the note
-  const removeNote = id => {
+  const removeNote = (id) => {
     axios
-      .delete("https://notex-backend.herokuapp.com/delete/" + id)
+      .delete("http://localhost:5000/delete/" + id)
       .then((res) => console.log(res.data));
     
       setNotes(prevNotes => {
@@ -50,7 +50,7 @@ const App = () => {
   }
 
   // Edit notes
-  const editNote = id => {
+  const editNote = (id) => {
     const editItem = notes.find((currentNote) => {
       return currentNote._id === id;
     })
