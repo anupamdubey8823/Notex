@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import axios from "axios";
-import SendIcon from '@material-ui/icons/Send';
-import './EditArea.css';
+import SendIcon from "@material-ui/icons/Send";
+import "./EditArea.css";
+import styled from "styled-components"
 
 const EditArea = props =>  {
     
@@ -29,7 +30,7 @@ const EditArea = props =>  {
     const handleClick = event => {
         event.preventDefault();
         axios 
-            .post("https://notex-backend.herokuapp.com/update/" + props.id, edit)
+            .post("http://localhost:5000/update/" + props.id, edit)
             .then(res => console.log(res.data))
        
         setTimeout( () => {
@@ -40,7 +41,7 @@ const EditArea = props =>  {
     /* COMPONENT */
     return (
         <>
-            <form id="EditArea" className="edit-form">
+            <form id="EditArea" className="edit-form">  
                 <h1>
                     <input 
                         name="Title" 
@@ -58,14 +59,30 @@ const EditArea = props =>  {
                     onChange={handleChange}
                 />
 
-                <div className="sendicon">
-                    <button onClick={handleClick}>
+                <SendIconDiv>
+                    <button onClick={handleClick} aria-label="Update Note">
                         <SendIcon />
                     </button>
-                </div>
+                </SendIconDiv>
             </form>
         </>
     )
 }
+
+/*
+STYLED COMPONENTS
+*/
+
+const SendIconDiv = styled.div`
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+        color: #f5ba13;
+        border: none;
+        cursor: pointer;
+        outline: none;
+    }
+`;
 
 export default EditArea;

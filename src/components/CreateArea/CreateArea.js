@@ -4,7 +4,7 @@ import AddIcon from "@material-ui/icons/Add";
 import { Fab, Zoom } from "@material-ui/core";
 import axios from "axios";
 
-const CreateArea = props => {
+const CreateArea = (props) => {
   
   /* STATES */
   
@@ -37,7 +37,7 @@ const CreateArea = props => {
     });
     
     axios
-      .post("https://notex-backend.herokuapp.com/add", createArea)
+      .post("http://localhost:5000/add", createArea)
       .then((res) => console.log(res.data));
   }
 
@@ -65,7 +65,7 @@ const CreateArea = props => {
           rows={isExpanded ? 3 : 1}
         />
         <Zoom in={isExpanded ? true : false}>
-          <Fab onClick={submitNote}>
+          <Fab onClick={submitNote} aria-label="Add a note">
             <AddIcon />
           </Fab>
         </Zoom>
