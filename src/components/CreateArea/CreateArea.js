@@ -37,7 +37,7 @@ const CreateArea = (props) => {
     });
     
     axios
-      .post("http://localhost:5000/add", createArea)
+      .post("https://notex-backend.herokuapp.com/add", createArea)
       .then((res) => console.log(res.data));
   }
 

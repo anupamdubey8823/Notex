@@ -25,7 +25,7 @@ const App = () => {
   // Fetch all notes from MongoDB
   useEffect( () => {
     async function fetchNotes() {
-      const response = await axios.get("http://localhost:5000");
+      const response = await axios.get("https://notex-backend.herokuapp.com/");
       setNotes(response.data);
     }
     fetchNotes();
@@ -41,7 +41,7 @@ const App = () => {
   // Delete the note
   const removeNote = (id) => {
     axios
-      .delete("http://localhost:5000/delete/" + id)
+      .delete("https://notex-backend.herokuapp.com/delete/" + id)
       .then((res) => console.log(res.data));
     
       setNotes(prevNotes => {

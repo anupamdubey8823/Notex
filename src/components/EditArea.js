@@ -30,7 +30,7 @@ const EditArea = props =>  {
     const handleClick = event => {
         event.preventDefault();
         axios 
-            .post("http://localhost:5000/update/" + props.id, edit)
+            .post("https://notex-backend.herokuapp.com/update/" + props.id, edit)
             .then(res => console.log(res.data))
        
         setTimeout( () => {
