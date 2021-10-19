@@ -3,6 +3,7 @@ import axios from "axios";
 import SendIcon from "@material-ui/icons/Send";
 import "./EditArea.css";
 import styled from "styled-components"
+import { BACKEND_URL } from "../constants/APIrequestUrl";
 
 const EditArea = props =>  {
     
@@ -29,8 +30,9 @@ const EditArea = props =>  {
     // Event handler for the submitting the edited note
     const handleClick = event => {
         event.preventDefault();
+        const url = new URL("update/"+props.id, BACKEND_URL)
         axios 
-            .post("https://notex-backend.herokuapp.com/update/" + props.id, edit)
+            .post(url, edit)
             .then(res => console.log(res.data))
        
         setTimeout( () => {

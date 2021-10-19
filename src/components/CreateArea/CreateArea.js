@@ -3,6 +3,8 @@ import "./CreateArea.css";
 import AddIcon from "@material-ui/icons/Add";
 import { Fab, Zoom } from "@material-ui/core";
 import axios from "axios";
+import { BACKEND_URL } from "../../constants/APIrequestUrl";
+
 
 const CreateArea = (props) => {
   
@@ -29,16 +31,28 @@ const CreateArea = (props) => {
 
   const submitNote = event => {
     event.preventDefault();
-    
-    props.onAdd(createArea);
-    setCreateArea({
-      Title: "",
-      Content: "",
-    });
-    
-    axios
-      .post("https://notex-backend.herokuapp.com/add", createArea)
-      .then((res) => console.log(res.data));
+    if (createArea.Title !== "" && createArea.Content === "") {
+      window.alert("Add Content to the note");
+    }
+    else if (createArea.Title === "" && createArea.Content !== "") {
+      window.alert("Add Title to the note");
+    }
+    else if (createArea.Title === "" && createArea.Content === "") {
+      window.alert("Cannot add empty note!");
+    } 
+
+    else {
+      props.onAdd(createArea);
+      setCreateArea({
+        Title: "",
+        Content: "",
+      });
+      const url = new URL("add", BACKEND_URL)
+      
+      axios
+        .post(url, createArea)
+        .then((res) => console.log(res.data));
+    }
   }
 
   const expand = () => setExpanded(true);
@@ -48,12 +62,14 @@ const CreateArea = (props) => {
     <div className="createnote">
       <form id="createarea-form">
         {isExpanded ? (
-          <input
-            onChange={handleChange}
-            name="Title"
-            placeholder="Title"
-            value={createArea.Title}
-          />
+          <h1>
+            <input
+              onChange={handleChange}
+              name="Title"
+              placeholder="Title"
+              value={createArea.Title}
+            />
+          </h1>
         ) : null}
 
         <textarea

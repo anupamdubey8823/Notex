@@ -4,6 +4,7 @@ let Note = require('../models/note.model');
 // Get all notes
 router.route('/').get(async (req, res) => {
     const notes = await Note.find({});
+    // const notes = await Note.find({email: req.query.email});
     res.send(notes);
 });
 

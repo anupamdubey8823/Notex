@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const noteSchema = new mongoose.Schema ({
     Title: String,
     Content: String,
+    // Email: String,
 }, {
     timestamps: true,
 });

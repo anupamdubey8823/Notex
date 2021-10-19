@@ -37,6 +37,13 @@
     bottom: -28px;
 }
 
+#createarea-form h1 {
+    margin: 0;
+    font-size: 1.1rem;
+    width: 100%;
+    font-weight: bolder;
+}
+
 @media (max-width: 600px) {
     form {
         width: 55%;

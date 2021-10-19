@@ -6,6 +6,8 @@ import CreateArea from "./components/CreateArea/CreateArea";
 import Note from "./components/Note";
 import Footer from "./components/Footer";
 import EditArea from "./components/EditArea";
+import { BACKEND_URL } from "./constants/APIrequestUrl";
+
 
 const App = () => {
   
@@ -25,7 +27,7 @@ const App = () => {
   // Fetch all notes from MongoDB
   useEffect( () => {
     async function fetchNotes() {
-      const response = await axios.get("https://notex-backend.herokuapp.com/");
+      const response = await axios.get(BACKEND_URL);
       setNotes(response.data);
     }
     fetchNotes();
@@ -40,8 +42,9 @@ const App = () => {
 
   // Delete the note
   const removeNote = (id) => {
+    const url = new URL("delete/", BACKEND_URL)
     axios
-      .delete("https://notex-backend.herokuapp.com/delete/" + id)
+      .delete(url + id)
       .then((res) => console.log(res.data));
     
       setNotes(prevNotes => {
